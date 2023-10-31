@@ -1,0 +1,19 @@
+<div class="p-5 flex flex-column flex-auto surface-ground">
+     <div *ngIf="!registerMode" class="flex flex-column">
+        <div class="flex align-items-center justify-content-center h-2rem  font-bold border-round m-2">Find Your Match</div>
+        <div class="flex align-items-center justify-content-center h-2rem  font-bold border-round m-2">come on in to view your matches...all you need to do is sign up!</div>
+            <div class="flex justify-content-center flex-wrap">
+                <p-button (click)="registerToggle()" label="Register" class="border-round m-2" ></p-button>
+                <p-button label="Learn More" class="border-round m-2" severity="help"></p-button>
+            </div>
+         
+    </div>
+    <div *ngIf="registerMode">
+        <!-- <p class="m-0">
+           Register form goes here
+        </p> -->
+        <!-- <app-register [usersFromHomeComponent]="users"  (cancelRegister)="cancelRegisterMode($event)"></app-register> -->
+        <app-register  (cancelRegister)="cancelRegisterMode($event)"></app-register>
+    </div>
+
+</div>

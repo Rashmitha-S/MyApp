@@ -1,0 +1,32 @@
+<div class="p-5 flex flex-column flex-auto surface-ground">
+    <div class="flex flex-column">
+        <h2 class="flex justify-content-center">Register</h2>
+        <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+        <form  #registerForm="ngForm" (ngSubmit)="register()">
+
+            <div class="flex justify-content-center ">
+                <input id="firstname3" type="text" [(ngModel)]="model.username" placeholder="Username" name="username"
+                    class="border-round m-2 text-base text-color surface-overlay p-2 border-1 border-solid  border-round appearance-none outline-none focus:border-primary align-items-center">
+            </div>
+            <!-- <div class="flex justify-content-center ">
+               <label>who is your favorite user</label>
+                <select class="form-select">
+                    <option *ngFor="let user of usersFromHomeComponent" [value]="user.userName" > {{user.userName}}</option>
+                </select>
+                
+            </div> -->
+            <div class="flex justify-content-center ">
+
+                <input id="lastname3" type="password" [(ngModel)]="model.password" placeholder="Password" name="password"
+                    class="border-round m-2 text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary align-items-center ">
+
+            </div>
+            <div class="flex justify-content-center flex-wrap">
+                <p-button label="Register" type="submit" class="border-round m-2"></p-button>
+                <p-button label="Cancel" severity="secondary" (click)="cancel()" type="button" class="border-round m-2"></p-button>
+            </div>
+
+        </form>
+
+    </div>
+

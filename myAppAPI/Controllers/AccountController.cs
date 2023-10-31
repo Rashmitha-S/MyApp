@@ -50,7 +50,7 @@ namespace myApp.Controllers
             return await _context.Users.AnyAsync(x=>x.UserName==username.ToLower());
         }
 
-        [HttpGet("Login")]
+        [HttpPost("Login")]
         public async Task<ActionResult<UserDTO>> Login(LoginDTO loginDTO)
         {
             var user = await _context.Users.SingleOrDefaultAsync(x=>x.UserName == loginDTO.UserName);
