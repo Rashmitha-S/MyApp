@@ -1,41 +1,49 @@
 <div>
     <p-menubar>
-      
-     
+        <p-toast></p-toast>
         <ng-template pTemplate="start">
             <ol class="navbar-nav me-auto mb-2 mb-md-0">
                 <ng-container>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="/members" routerLinkActive="active">
-                           Dating App</a>
-                      </li>&nbsp;&nbsp;
-                    </ng-container>
-                    <ng-container *ngIf="accountService.currentUser$ | async">
-                        <button pButton type="button" label="Matches" class="button-language p-button-link"></button>
-                        <button pButton type="button" label="Lists" class="button-language p-button-link"></button>
-                        <button pButton type="button" label="Edit Profile" class="button-language p-button-link"></button>
-                        
-                       
-                  </ng-container>
-                 
-              
-                  </ol>
-                  
+                        <a class="nav-link" routerLink="/" routerLinkActive="active">
+                            Dating App</a>
+                    </li>&nbsp;&nbsp;
+                </ng-container>
+                <ng-container *ngIf="accountService.currentUser$ | async">
+                    <!-- <ng-container > -->
+                    <p-toast></p-toast>
+                    <button pButton type="button" routerLink="/members" (click)="matches()" routerLinkActive="active" label="Matches"
+                        class="button-language p-button-link"></button>
+                    <button pButton type="button" routerLink="/lists" (click)="matches()" routerLinkActive="active" label="Lists"
+                        class="button-language p-button-link"></button>
+                    <button pButton type="button" routerLink="/messages" (click)="matches()" routerLinkActive="active" label="Messages"
+                        class="button-language p-button-link"></button>
+                </ng-container>
+            </ol>
+
         </ng-template>
 
-        <p-splitButton *ngIf="accountService.currentUser$| async" label="Welcome User" #menu [model]="export" ></p-splitButton>
-             
-        <form *ngIf="!(accountService.currentUser$ | async)" #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off">
+        <p-splitButton *ngIf="(accountService.currentUser$| async)  as user" label="Welcome {{user.username | titlecase}}" #menu
+            [model]="export"></p-splitButton>
+
+        <form *ngIf="!(accountService.currentUser$ | async)" #loginForm="ngForm" (ngSubmit)="login()"
+            autocomplete="off">
             <div class="p-inputgroup">
+                <p-toast></p-toast>
+                <!-- <p-toast position="bottom-right"></p-toast>  -->
+                <!-- <p-toast position="top-center" key="tc"></p-toast> -->
+                <!-- <p-toast position="bottom-center" key="bc"></p-toast>  -->
                 <span class="p-inputgroup-addon">
                     <i class="pi pi-user"></i>
                 </span>
-                <input  name="username" class="formControl" [(ngModel)]="model.username" pInputText placeholder="Username" />&nbsp;
+                <input name="username" class="formControl" [(ngModel)]="model.username" pInputText
+                    placeholder="Username" />&nbsp;
 
                 <span class="p-inputgroup-addon">
                     <i class="pi pi-lock"></i>
                 </span>
-                <input  name="password" type="password" class="formControl" [(ngModel)]="model.password" pInputText placeholder="Password" />&nbsp;
+                <input name="password" type="password" class="formControl" [(ngModel)]="model.password" pInputText
+                    placeholder="Password" />&nbsp;
 
                 <!-- <span class="p-inputgroup-addon">
                     <i class="pi pi-lock"></i>
@@ -43,7 +51,7 @@
                 <input  name="password" class="formControl" [(ngModel)]="model.password" pInputText placeholder="Password" />&nbsp;
               
                  -->
-                <p-button label="Login" type="submit"  ></p-button>
+                <p-button label="Login" type="submit"></p-button>
             </div>
 
         </form>

@@ -18,6 +18,14 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { HomeComponent } from './home/home.component';
 import { CardModule } from 'primeng/card';
 import { RegisterComponent } from './register/register.component';
+import { MemberListComponent } from './members/member-list/member-list.component';
+import { MemberDetailComponent } from './members/member-detail/member-detail.component';
+import { ListsComponent } from './lists/lists.component';
+import { MessagesComponent } from './messages/messages.component';
+import { MessagesModule } from 'primeng/messages';
+import { ToastModule } from 'primeng/toast';
+import { MessageService, SharedModule } from 'primeng/api';
+
 
 
 
@@ -27,21 +35,25 @@ import { RegisterComponent } from './register/register.component';
     AppComponent,
     NavComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    MemberListComponent,
+    MemberDetailComponent,
+    ListsComponent,
+    MessagesComponent
   ],
   imports: [CommonModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ButtonModule,
+    SharedModule,
     TableModule,
     CarouselModule, MenubarModule,MegaMenuModule,PasswordModule,FormsModule,MenuModule,
-    SplitButtonModule,CardModule
+    SplitButtonModule,CardModule,MessagesModule,ToastModule
     
 
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
