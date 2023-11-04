@@ -1,0 +1,12 @@
+<ng-container>
+    <p-button class="mb-2 mt-2" (click)="get500error()" severity="danger">Test 500 error</p-button>&nbsp;
+    <p-button (click)="get404error()" severity="danger">Test 404 error</p-button>&nbsp;
+    <p-button (click)="get400error()" severity="danger">Test 400 error</p-button>&nbsp;
+    <p-button (click)="get401error()" severity="danger">Test 401 error</p-button>&nbsp;
+    <p-button (click)="get400Validationerror()" severity="danger">Test 400 Validation error</p-button>
+    <div class="flex flex-wrap p-2 align-items-center gap-3" *ngIf="validationErrors.length>0">
+        <ul class="text-danger">
+            <li *ngFor="let error of validationErrors">{{error}}</li>
+        </ul>
+    </div>
+</ng-container>

@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using myApp.Data;
 using myApp.Extensions;
 using myApp.Interface;
+using myApp.Middleware;
 using myApp.Services;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -50,6 +51,12 @@ builder.Services.AddScoped<ITokenService,TokenService>();
  });
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
+
+// if(builder.Environment.IsDevelopment()){
+//     app.UseDeveloperExceptionPage();
+// }
 
 // Configure the HTTP request pipeline.
 

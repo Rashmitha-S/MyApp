@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,6 +25,10 @@ import { MessagesComponent } from './messages/messages.component';
 import { MessagesModule } from 'primeng/messages';
 import { ToastModule } from 'primeng/toast';
 import { MessageService, SharedModule } from 'primeng/api';
+import { TestErrorComponent } from './errors/test-error/test-error.component';
+import { ErrorsInterceptor } from './_interceptor/errors.interceptor';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { ServerErrorComponent } from './errors/server-error/server-error.component';
 
 
 
@@ -39,7 +43,10 @@ import { MessageService, SharedModule } from 'primeng/api';
     MemberListComponent,
     MemberDetailComponent,
     ListsComponent,
-    MessagesComponent
+    MessagesComponent,
+    TestErrorComponent,
+    NotFoundComponent,
+    ServerErrorComponent
   ],
   imports: [CommonModule,
     BrowserModule,
@@ -53,7 +60,7 @@ import { MessageService, SharedModule } from 'primeng/api';
     
 
   ],
-  providers: [MessageService],
+  providers: [MessageService,{provide:HTTP_INTERCEPTORS,useClass:ErrorsInterceptor,multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
