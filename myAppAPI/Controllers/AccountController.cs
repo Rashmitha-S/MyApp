@@ -1,5 +1,7 @@
-﻿using System.Security.Cryptography;
+﻿using System.Diagnostics;
+using System.Security.Cryptography;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using myApp.Data;
@@ -8,7 +10,8 @@ using myApp.Entities;
 using myApp.Interface;
 
 namespace myApp.Controllers
-{
+ {   
+   // [Authorize]
     public class AccountController : BaseApiController
     {
         private readonly DataContext _context;
@@ -53,6 +56,7 @@ namespace myApp.Controllers
         [HttpPost("Login")]
         public async Task<ActionResult<UserDTO>> Login(LoginDTO loginDTO)
         {
+            
             var user = await _context.Users.SingleOrDefaultAsync(x=>x.UserName == loginDTO.UserName);
             
             if(user == null) return Unauthorized();

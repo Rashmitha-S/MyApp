@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -37,6 +38,7 @@ builder.Services.AddSwaggerGen();
 //                           .AllowCredentials();
 //                       });
 // });
+
 
 builder.Services.AddScoped<ITokenService,TokenService>();
  builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -77,5 +79,17 @@ app.UseAuthorization();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using var scope=app.Services.CreateScope();
+var services=scope.ServiceProvider;
+try{
+    var context=services.GetRequiredService<DataContext>();
+    await context.Database.MigrateAsync();
+    await Seed.SeedUsers(context);
+}
+catch(Exception ex){
+    var logger=services.GetService<ILogger<Program>>();
+    logger.LogError(ex,"An error occured during migration");
+}
 
 app.Run();
