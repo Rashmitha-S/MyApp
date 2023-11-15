@@ -28,9 +28,7 @@ export class RegisterComponent implements OnInit {
       },
       error:error=> this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error})           
   })
-    console.log(this.model);
-
-    
+    console.log(this.model);   
   }
 
   cancel(){

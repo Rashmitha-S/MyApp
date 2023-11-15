@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
     
     return this.accountService.currentUser$.pipe(
       map(user=>{
-        debugger
+      
         if(user){
           this.sometext=true;
         return true;}

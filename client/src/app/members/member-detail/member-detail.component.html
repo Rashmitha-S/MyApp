@@ -1,1 +1,77 @@
-<p>member-detail works!</p>
+<div class="grid">
+    <div class="col-4">
+        <div class="p-card p-fluid" *ngIf="member">
+
+            <img alt="{{member.knownAs}}" src="{{member.photoUrl || './assets/user.png'}}" class="img-thumbnail" />
+            <div class="card-body">
+                <div>
+                    <strong>Location:</strong>
+                    <p>{{member.city}}</p>
+                </div>
+                <div>
+                    <strong>Age:</strong>
+                    <p>{{member.age}}</p>
+                </div>
+                <div>
+                    <strong>Last Active:</strong>
+                    <p>{{member.lastActive}}</p>
+                </div>
+                <div>
+                    <strong>Member since:</strong>
+                    <p>{{member.created}}</p>
+                </div>
+            </div>
+            <div class="row" [style]="{ 'margin-left': '20px' }">
+                <p-button label="Like"></p-button>
+                <p-button label="Messages" styleClass="p-button-secondary help" severity="warning"
+                    [style]="{ 'margin-left': '.5em' }"></p-button>
+            </div>            
+        </div>
+    </div>
+    <div class="col-8">
+     
+
+        <p-tabView *ngIf="member">
+            <p-tabPanel header="About {{member.knownAs}}">
+                <h1>Description</h1>
+                <p>{{member.introduction}}</p>
+                <h1>Looking For</h1>
+                <p>{{member.lookingFor}}</p>
+            </p-tabPanel>
+            <p-tabPanel header="Interests">
+                <h1>Interests</h1>
+                <p>{{member.interests}}</p>
+            </p-tabPanel>
+            <p-tabPanel header="Photos">
+                <h1>Photos</h1>
+                <p-galleria [(value)]="images" [responsiveOptions]="responsiveOptions" [containerStyle]="{ 'max-width': '640px' }" [numVisible]="5">
+                    <ng-template pTemplate="item" let-item>
+                        <img [src]="item" style="width: 100%;" />
+                    </ng-template>
+                    <ng-template pTemplate="thumbnail" let-item>
+                        <div class="grid grid-nogutter justify-content-center">
+                            <img [src]="item" />
+                        </div>
+                    </ng-template>
+                </p-galleria>    
+            </p-tabPanel>
+            <p-tabPanel header="Messages">
+                <h1>Messages</h1>
+                <p>Messages will go here</p>
+            </p-tabPanel>          
+       </p-tabView>            
+    </div>
+</div>
+<!-- <div class="card">
+    <p>hello</p>
+    <p-galleria [(value)]="images" [responsiveOptions]="responsiveOptions" [containerStyle]="{ 'max-width': '640px' }" >
+        <ng-template pTemplate="item" let-item>
+            <img [src]="item.url" style="width: 100%;" />
+        </ng-template>
+        <ng-template pTemplate="thumbnail" let-item>
+            <div class="grid grid-nogutter justify-content-center">
+                <img [src]="item.url" />
+            </div>
+        </ng-template>
+    </p-galleria>
+</div> -->

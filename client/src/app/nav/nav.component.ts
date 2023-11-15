@@ -56,12 +56,12 @@ export class NavComponent implements OnInit {
 
 
     login() {
+        debugger
         console.log(this.model);
         this.accountService.login(this.model).subscribe({
             next: _ => this.router.navigateByUrl('/members'),
 
-            error: error => {
-                debugger
+            error: error => {                
                 console.log(error.error);
                 this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error });
             }

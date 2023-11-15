@@ -10,7 +10,7 @@ using SQLitePCL;
 
 namespace myApp.Controllers
 {
-   // [Authorize]
+   //[Authorize]
     // [ApiController]
     // [Route("api/[controller]")]  // /api/Users
     public class UsersController : BaseApiController

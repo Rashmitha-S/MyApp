@@ -1,0 +1,36 @@
+<p-card *ngIf="member" class="p-card">
+
+    <ng-template pTemplate="header">
+        <div class="card-img-wrapper">
+            <img class="transformm" alt={{member.knownAs}} src={{member.photoUrl}} />
+
+            <div class="flex align-items-center justify-content-center member-icons animate">
+                <p-button routerLink="/members/{{member.userName}}" class="space" icon="pi pi-user" severity="help"></p-button>
+                <p-button class="space" icon="pi pi-heart" severity="help"></p-button>
+                <p-button class="space" icon="pi pi-envelope" severity="help"></p-button>
+            </div>
+        </div>
+
+
+    </ng-template>
+
+    <h6 class="text-center"><i class="pi pi-user ">{{member.knownAs}}</i></h6>
+    <p class="text-center">{{member.city}}</p>
+
+    <!-- <i class="pi pi-user" style="font-size: 2.5rem"></i> -->
+
+
+</p-card>
+<!-- <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
+        quas!
+    </p>
+    <ng-template pTemplate="footer">
+        <p-button label="Save" icon="pi pi-check"></p-button>
+        <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
+    </ng-template> 
+
+
+ <p-card  *ngIf="member" >
+    <p>{{member.knownAs}}</p>
+</p-card> -->
