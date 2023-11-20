@@ -11,12 +11,14 @@ import { Observable } from 'rxjs';
   styleUrls: ['./member-list.component.scss']
 })
 export class MemberListComponent implements OnInit {
+  //members$:Observable<Member[]>|undefined;
   members:Member[]|undefined;
 
   constructor(private memberService:MembersService) { }
 
   ngOnInit(): void {
-    this.loadMembers();
+    //this.members$=this.memberService.getMembers();
+     this.loadMembers();
   }
 
   loadMembers()
@@ -30,7 +32,7 @@ export class MemberListComponent implements OnInit {
     })
 
 
-  }
+   }
 
 
 

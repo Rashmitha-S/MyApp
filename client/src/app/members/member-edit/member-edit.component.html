@@ -1,0 +1,80 @@
+
+<div class="grid row" *ngIf="member">
+ 
+    <div class="col-4">      
+        <h2>Your profile</h2>
+        <!-- <p-progressSpinner *ngIf="isloading" animationDuration=".5s"></p-progressSpinner> -->
+    </div>
+    <div class="col-8">
+        <div class="alert alert-info pb-0" *ngIf="editForm.dirty">
+            <p><strong>Information: </strong>You have made changes. Any unsaved changes will be lost</p>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="p-card p-fluid" >
+            <div class="card-body">
+                <img alt="{{member.knownAs}}" src="{{member.photoUrl || './assets/user.png'}}" class="img-thumbnail" />
+            </div>
+            <div class="card-body">
+                <div>
+                    <strong>Location:</strong>
+                    <p>{{member.city}}</p>
+                </div>
+                <div>
+                    <strong>Age:</strong>
+                    <p>{{member.age}}</p>
+                </div>
+                <div>
+                    <strong>Last Active:</strong>
+                    <p>{{member.lastActive}}</p>
+                </div>
+                <div>
+                    <strong>Member since:</strong>
+                    <p>{{member.created}}</p>
+                </div>
+            </div>
+            <div class="row card-body" [style]="{ 'margin-left': '0px' }">
+                <button type="submit" [disabled]="!editForm.dirty" pButton pRipple label="Save Changes" form="editForm" class="p-button-success" ></button>
+                         </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="p-card" >
+            <div class="card-body">
+                <p-tabView >
+                    <p-tabPanel header="About {{member.knownAs}}">
+                        <form #editForm="ngForm" id="editForm" (ngSubmit)="updateMember()">
+                            <!-- <p-toast position="top-left" ></p-toast> -->
+                            <!-- <textarea name="introduction" rows="6" cols="30" 
+                                class="w-full mb-3 p-inputtextarea p-inputtext p-component p-element"
+                                [(ngModel)]="user.username"></textarea> -->
+                            <label class="block text-900 font-medium mb-2">Description</label>
+                            <textarea name="introduction" rows="6" cols="30"
+                                class="w-full mb-3 p-inputtextarea p-inputtext p-component p-element"
+                                [(ngModel)]="member.introduction"></textarea>
+                            <label class="block text-900 font-medium mb-2">Looking For</label>
+                            <textarea name="lookingFor" rows="6" cols="30"
+                                class="w-full mb-3 p-inputtextarea p-inputtext p-component p-element"
+                                [(ngModel)]="member.lookingFor"></textarea>
+                            <label class="block text-900 font-medium mb-2">Interests</label>
+                            <textarea name="interests" rows="6" cols="30"
+                                class="w-full mb-3 p-inputtextarea p-inputtext p-component p-element"
+                                [(ngModel)]="member.interests"></textarea>
+                            <h4>Location Details:</h4>
+                            <div class="flex">
+                                <label class="mt-1 mr-1" for="city">City:</label>
+                                <input type="text" [(ngModel)]="member.city" name="city" pInputText
+                                    class="form-control mb-3 p-inputtext p-component p-element">
+                                <label class="mt-1 mr-" for="city">Country:</label>
+                                <input type="text" [(ngModel)]="member.country" name="country" pInputText
+                                    class="form-control mb-3 p-inputtext p-component p-element">
+                            </div>
+                            <!-- <input  type="text" pInputText class="form-control w-full mb-3 p-inputtext p-component p-element"> -->
+                        </form>
+                    </p-tabPanel>
+                    <p-tabPanel header="About {{member.knownAs}}"></p-tabPanel>
+                </p-tabView>
+            </div>
+        </div>
+    </div>
+</div>

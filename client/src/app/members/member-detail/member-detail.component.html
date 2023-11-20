@@ -1,4 +1,4 @@
-<div class="grid">
+<div class="grid row">
     <div class="col-4">
         <div class="p-card p-fluid" *ngIf="member">
 
@@ -21,7 +21,7 @@
                     <p>{{member.created}}</p>
                 </div>
             </div>
-            <div class="row" [style]="{ 'margin-left': '20px' }">
+            <div class="row" [style]="{ 'margin-left': '0px' }">
                 <p-button label="Like"></p-button>
                 <p-button label="Messages" styleClass="p-button-secondary help" severity="warning"
                     [style]="{ 'margin-left': '.5em' }"></p-button>

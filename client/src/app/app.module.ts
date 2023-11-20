@@ -34,6 +34,8 @@ import { OrderListModule } from 'primeng/orderlist';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { TabViewModule } from 'primeng/tabview';
 import { GalleriaModule } from 'primeng/galleria';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 
 
@@ -52,7 +54,8 @@ import { GalleriaModule } from 'primeng/galleria';
     TestErrorComponent,
     NotFoundComponent,
     ServerErrorComponent,
-    MemberCardComponent
+    MemberCardComponent,
+    MemberEditComponent
   ],
   imports: [CommonModule,
     BrowserModule,
@@ -63,7 +66,7 @@ import { GalleriaModule } from 'primeng/galleria';
     TableModule,
     CarouselModule, MenubarModule,MegaMenuModule,PasswordModule,FormsModule,MenuModule,
     SplitButtonModule,CardModule,MessagesModule,ToastModule,OrderListModule,
-    TabViewModule,GalleriaModule
+    TabViewModule,GalleriaModule,ProgressSpinnerModule
     
 
   ],

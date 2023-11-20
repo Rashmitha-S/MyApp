@@ -24,6 +24,7 @@ export class NavComponent implements OnInit {
     export: MenuItem[] = [
         {
             label: "Edit Profile",
+            routerLink:'/member/edit'
         },
 
         {
