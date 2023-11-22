@@ -24,13 +24,15 @@
             </ol>
 
         </ng-template>
-
+       
+            <img class="mr-3" *ngIf="(accountService.currentUser$| async)  as user" src="{{user.photoUrl || './assets/user.png'}}" alt="user photo">
         <p-splitButton *ngIf="(accountService.currentUser$| async)  as user" label="Welcome {{user.username | titlecase}}" #menu
             [model]="export"></p-splitButton>
 
         <form *ngIf="!(accountService.currentUser$ | async)" #loginForm="ngForm" (ngSubmit)="login()"
             autocomplete="off">
             <div class="p-inputgroup">
+                <!-- <img src="{{user.photoUrl}}" alt="user photo"> -->
                 <p-toast></p-toast>
                 <!-- <p-toast position="bottom-right"></p-toast>  -->
                 <!-- <p-toast position="top-center" key="tc"></p-toast> -->
@@ -57,6 +59,7 @@
             </div>
 
         </form>
+
     </p-menubar>
 
 </div>

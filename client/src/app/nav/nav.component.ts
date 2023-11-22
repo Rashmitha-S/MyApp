@@ -17,6 +17,8 @@ import { map } from 'rxjs/operators';
     styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
+[x: string]: any;
+username:Observable<Text>
 
     items: MenuItem[];
     model: any = {};
@@ -60,7 +62,9 @@ export class NavComponent implements OnInit {
         debugger
         console.log(this.model);
         this.accountService.login(this.model).subscribe({
-            next: _ => this.router.navigateByUrl('/members'),
+            next: response => {this.router.navigateByUrl('/members');
+           console.log(response)
+        },
 
             error: error => {                
                 console.log(error.error);

@@ -72,7 +72,9 @@
                             <!-- <input  type="text" pInputText class="form-control w-full mb-3 p-inputtext p-component p-element"> -->
                         </form>
                     </p-tabPanel>
-                    <p-tabPanel header="About {{member.knownAs}}"></p-tabPanel>
+                    <p-tabPanel header="Edit Photos">
+                        <app-photo-editor [member]="member"></app-photo-editor>
+                    </p-tabPanel>
                 </p-tabView>
             </div>
         </div>

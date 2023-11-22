@@ -36,6 +36,10 @@ import { TabViewModule } from 'primeng/tabview';
 import { GalleriaModule } from 'primeng/galleria';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
+import { FileUploadModule } from 'ng2-file-upload';
+
+import { AvatarModule } from 'primeng/avatar';
 
 
 
@@ -55,7 +59,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     NotFoundComponent,
     ServerErrorComponent,
     MemberCardComponent,
-    MemberEditComponent
+    MemberEditComponent,
+    PhotoEditorComponent
   ],
   imports: [CommonModule,
     BrowserModule,
@@ -66,7 +71,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     TableModule,
     CarouselModule, MenubarModule,MegaMenuModule,PasswordModule,FormsModule,MenuModule,
     SplitButtonModule,CardModule,MessagesModule,ToastModule,OrderListModule,
-    TabViewModule,GalleriaModule,ProgressSpinnerModule
+    TabViewModule,GalleriaModule,ProgressSpinnerModule,FileUploadModule,AvatarModule
+    
     
 
   ],
