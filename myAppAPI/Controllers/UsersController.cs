@@ -96,7 +96,7 @@ namespace myApp.Controllers
         public async Task<ActionResult>SetMainPhoto(int photoId,string username)
     {
        var user=await _userRepository.GetUserByUsernameAsync(username);
-       // var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
+       //var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
 
         var photo = user.Photos.FirstOrDefault(x => x.Id == photoId);
 

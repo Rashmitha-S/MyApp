@@ -34,12 +34,14 @@
               "src/styles.scss",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/vela-orange/theme.css",
-              "node_modules/primeng/resources/primeng.min.css"
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/bootstrap/scss/bootstrap.scss"
+             
              
            
              
             ],
-            "scripts": []
+            "scripts": [  "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
           },
           "configurations": {
             "production": {
@@ -111,12 +113,11 @@
                "src/styles.scss",
                "node_modules/primeicons/primeicons.css",
                "node_modules/primeng/resources/themes/vela-orange/theme.css",
-               "node_modules/primeng/resources/primeng.min.css"
-            
-            
-           
+               "node_modules/primeng/resources/primeng.min.css",
+               "node_modules/bootstrap/scss/bootstrap.scss"    
+                       
             ],
-            "scripts": []
+            "scripts": [  "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
           }
         },
         "lint": {

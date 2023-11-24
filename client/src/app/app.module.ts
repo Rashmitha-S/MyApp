@@ -12,7 +12,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { TableModule } from 'primeng/table';
 import { PasswordModule } from 'primeng/password';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuModule } from 'primeng/menu'; 
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { HomeComponent } from './home/home.component';
@@ -38,8 +38,11 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { FileUploadModule } from 'ng2-file-upload';
-
 import { AvatarModule } from 'primeng/avatar';
+import { DividerModule } from 'primeng/divider';
+import { TextInputComponent } from './_forms/text-input/text-input.component';
+import { DatePickerComponent } from './_forms/date-picker/date-picker.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 
@@ -60,7 +63,9 @@ import { AvatarModule } from 'primeng/avatar';
     ServerErrorComponent,
     MemberCardComponent,
     MemberEditComponent,
-    PhotoEditorComponent
+    PhotoEditorComponent,
+    TextInputComponent,
+    DatePickerComponent
   ],
   imports: [CommonModule,
     BrowserModule,
@@ -71,7 +76,8 @@ import { AvatarModule } from 'primeng/avatar';
     TableModule,
     CarouselModule, MenubarModule,MegaMenuModule,PasswordModule,FormsModule,MenuModule,
     SplitButtonModule,CardModule,MessagesModule,ToastModule,OrderListModule,
-    TabViewModule,GalleriaModule,ProgressSpinnerModule,FileUploadModule,AvatarModule
+    TabViewModule,GalleriaModule,ProgressSpinnerModule,FileUploadModule,AvatarModule,
+    ReactiveFormsModule,DividerModule,BsDatepickerModule.forRoot()
     
     
 

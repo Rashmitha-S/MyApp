@@ -1,32 +1,73 @@
 <div class="p-5 flex flex-column flex-auto surface-ground">
     <div class="flex flex-column">
         <h4 class="flex justify-content-center">Sign Up</h4>
-    
-        <form  #registerForm="ngForm" (ngSubmit)="register()">
-
-            <div class="flex justify-content-center ">
-                <input id="firstname3" class="m-2" type="text" [(ngModel)]="model.username" placeholder="Username" name="username">
-                    <!-- class="border-round m-2 text-base text-color surface-overlay p-2 border-1 border-solid  border-round appearance-none outline-none focus:border-primary align-items-center"> -->
+        <p-divider></p-divider>
+        <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register()">
+            <div class="flex justify-content-center">
+                <div class="mb-3">
+                    <label style="margin-right: 30px;">I am a: </label>
+                    <label class="form-check-label" style="margin-right: 30px;">
+                        <input class="form-check-input ms-30" type="radio" value="male" formControlName="gender"> Male
+                    </label>
+                    <label class="form-check-label" style="margin-right: 30px;">
+                        <input class="form-check-input " type="radio" value="female" formControlName="gender"> Female
+                    </label>
+                </div>
             </div>
-            <!-- <div class="flex justify-content-center ">
-               <label>who is your favorite user</label>
-                <select class="form-select">
-                    <option *ngFor="let user of usersFromHomeComponent" [value]="user.userName" > {{user.userName}}</option>
-                </select>
-                
+            <div class="flex justify-content-center">
+
+                <app-text-input [formControl]="$any(registerForm.controls['username'])"
+                    [label]="'Username'"></app-text-input>
+            </div>
+            <div class="flex justify-content-center">
+                <app-text-input [formControl]="$any(registerForm.controls['knownAs'])"
+                    [label]="'Known as'"></app-text-input>
+            </div>
+            <div class="flex justify-content-center">
+                <app-date-picker [formControl]="$any(registerForm.controls['dateOfBirth'])" [label]="'Date of birth'"
+                    [maxDate]="maxDate"></app-date-picker>
+            </div>
+            <div class="flex justify-content-center">
+                <app-text-input [formControl]="$any(registerForm.controls['city'])" [label]="'City'"></app-text-input>
+            </div>
+            <div class="flex justify-content-center">
+                <app-text-input [formControl]="$any(registerForm.controls['country'])"
+                    [label]="'Country'"></app-text-input>
+            </div>
+            <div class="flex justify-content-center">
+                <app-text-input [formControl]="$any(registerForm.controls['password'])" [label]="'Password'"
+                    [type]="'password'"></app-text-input>
+            </div>
+
+            <div class="flex justify-content-center">
+                <app-text-input [formControl]="$any(registerForm.controls['confirmPassword'])"
+                    [label]="'Confirm Password'" [type]="'password'"></app-text-input>
+            </div>
+
+
+            <div class="row" *ngIf="validationErrors">
+                <ul class="text-danger">
+                    <li *ngFor="let error of validationErrors">
+                        {{error}}
+                    </li>
+                </ul>
+            </div>
+
+
+
+
+            <!-- <div class="form-group text-center">
+                <button class="btn btn-success me-2" 
+                    type="submit">Register</button>
+                <button class="btn btn-default me-2" (click)="cancel()"
+                    type="button">Cancel</button>
             </div> -->
-            <div class="flex justify-content-center ">
-
-                <input id="lastname3" type="password" [(ngModel)]="model.password" placeholder="Password" name="password">
-                    <!-- class="border-round m-2 text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary align-items-center "> -->
-
-            </div>
             <div class="flex justify-content-center flex-wrap">
-                <p-button label="Register" type="submit" class="border-round m-2"></p-button>
-                <p-button label="Cancel" severity="secondary" (click)="cancel()" type="button" class="border-round m-2"></p-button>
+                <p-button [disabled]="!registerForm.valid" label="Register" type="submit" class="border-round m-2"></p-button>
+                <p-button label="Cancel" severity="secondary" (click)="cancel()" type="button"
+                    class="border-round m-2"></p-button>
             </div>
 
         </form>
 
     </div>
-

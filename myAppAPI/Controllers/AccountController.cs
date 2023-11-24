@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -17,9 +18,12 @@ namespace myApp.Controllers
         private readonly DataContext _context;
 
         private readonly ITokenService _tokenService;
+        private readonly IMapper _mapper;
 
-        public AccountController(DataContext context,ITokenService tokenService)
+        public AccountController(DataContext context,ITokenService tokenService,
+        IMapper mapper)
         {
+            _mapper=mapper;
             _tokenService=tokenService;
             _context = context;
         }
@@ -29,15 +33,20 @@ namespace myApp.Controllers
         {
             if(await UserExists(registerDTO.Username)) return BadRequest("Username has taken");
 
+            var user=_mapper.Map<AppUser>(registerDTO);
+
             using var hmac = new HMACSHA512();
 
-            var user=new AppUser
-            {
-                UserName=registerDTO.Username.ToLower(),
-                PasswordHash=hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDTO.Password)),
-                PasswordSalt=hmac.Key
-                
-            };
+       
+                user.UserName=registerDTO.Username.ToLower();
+                user.PasswordHash=hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDTO.Password));
+                user.PasswordSalt=hmac.Key;
+                user.Gender=registerDTO.Gender;
+                user.City=registerDTO.City;
+                user.Country=registerDTO.Country;
+                user.DateOfBirth=registerDTO.DateOfBirth;
+
+          
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
@@ -45,6 +54,7 @@ namespace myApp.Controllers
             {
                 Username=user.UserName,
                 Token=_tokenService.CreateToken(user),
+                KnownAs=user.KnownAs
                
             };
         }
@@ -77,7 +87,8 @@ namespace myApp.Controllers
             {
                 Username=user.UserName,
                 Token=_tokenService.CreateToken(user),
-                 PhotoUrl=user.Photos.FirstOrDefault(x=>x.IsMain).Url
+                 PhotoUrl=user.Photos.FirstOrDefault(x=>x.IsMain)?.Url,
+                 KnownAs=user.KnownAs
             };
         }
 
