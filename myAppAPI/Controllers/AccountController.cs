@@ -12,7 +12,7 @@ using myApp.Interface;
 
 namespace myApp.Controllers
  {   
-   // [Authorize]
+  // [Authorize]
     public class AccountController : BaseApiController
     {
         private readonly DataContext _context;
@@ -54,7 +54,8 @@ namespace myApp.Controllers
             {
                 Username=user.UserName,
                 Token=_tokenService.CreateToken(user),
-                KnownAs=user.KnownAs
+                KnownAs=user.KnownAs,
+                Gender=user.Gender
                
             };
         }
@@ -63,6 +64,8 @@ namespace myApp.Controllers
         {
             return await _context.Users.AnyAsync(x=>x.UserName==username.ToLower());
         }
+
+        [AllowAnonymous]
 
         [HttpPost("Login")]
         public async Task<ActionResult<UserDTO>> Login(LoginDTO loginDTO)
@@ -87,8 +90,9 @@ namespace myApp.Controllers
             {
                 Username=user.UserName,
                 Token=_tokenService.CreateToken(user),
-                 PhotoUrl=user.Photos.FirstOrDefault(x=>x.IsMain)?.Url,
-                 KnownAs=user.KnownAs
+                PhotoUrl=user.Photos.FirstOrDefault(x=>x.IsMain)?.Url,
+                KnownAs=user.KnownAs,
+                Gender=user.Gender
             };
         }
 

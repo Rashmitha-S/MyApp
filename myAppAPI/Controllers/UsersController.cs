@@ -7,12 +7,13 @@ using myApp.Data;
 using myApp.DTOs;
 using myApp.Entities;
 using myApp.Extensions;
+using myApp.Helpers;
 using myApp.Interface;
 using SQLitePCL;
 
 namespace myApp.Controllers
 {
-  //[Authorize]
+  [Authorize]
     // [ApiController]
     // [Route("api/[controller]")]  // /api/Users
     public class UsersController : BaseApiController
@@ -34,13 +35,24 @@ namespace myApp.Controllers
         [ActivatorUtilitiesConstructor]
         [HttpGet]
 
-        public async Task<ActionResult<IEnumerable<MemberDTO>>> GetUsers()
+        public async Task<ActionResult<PagedList<MemberDTO>>> GetUsers([FromQuery]UserParams userParams,string username)
         {
+          var CurrentUser = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
+            //var CurrentUser=await _userRepository.GetUserByUsernameAsync(username);
+            userParams.CurrentUserName=CurrentUser.UserName;
+
+            if(string.IsNullOrEmpty(userParams.Gender))
+            {
+                userParams.Gender=CurrentUser.Gender=="male"?"female":"male";
+            }
           
         //     var users = await _context.Users.ToListAsync();
         //    return users;
         //   return Ok(await _userRepository.GetUsersAsync());
-            var users = await _userRepository.GetMembersAsync();
+            var users = await _userRepository.GetMembersAsync(userParams);
+
+            Response.AddPaginationHeader(new PaginationHeader(users.CurrentPage,users.PageSize,
+            users.TotalCount,users.TotalPages));
            // var usersToReturn=_mapper.Map<IEnumerable<MemberDTO>>(users);
             return Ok(users);
           
@@ -56,11 +68,12 @@ namespace myApp.Controllers
            // return _mapper.Map<MemberDTO>(user);
         }
 
-        [HttpPut("{username}")]
-        public async Task<ActionResult<MemberUpdateDTO>> UpdateUser(MemberUpdateDTO memberUpdateDTO,string username){
+        [HttpPut]
+        public async Task<ActionResult<MemberUpdateDTO>> UpdateUser(MemberUpdateDTO memberUpdateDTO){
          //var username=this.use;
-         var user=await _userRepository.GetUserByUsernameAsync(username);
-         if(username==null) return NotFound();
+         //var user=await _userRepository.GetUserByUsernameAsync(username);
+         var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
+         //if(username==null) return NotFound();
 
          _mapper.Map(memberUpdateDTO,user);
 

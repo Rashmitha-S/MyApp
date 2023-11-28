@@ -43,6 +43,9 @@ import { DividerModule } from 'primeng/divider';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { DatePickerComponent } from './_forms/date-picker/date-picker.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { TimeagoModule } from "ngx-timeago";
 
 
 
@@ -77,8 +80,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     CarouselModule, MenubarModule,MegaMenuModule,PasswordModule,FormsModule,MenuModule,
     SplitButtonModule,CardModule,MessagesModule,ToastModule,OrderListModule,
     TabViewModule,GalleriaModule,ProgressSpinnerModule,FileUploadModule,AvatarModule,
-    ReactiveFormsModule,DividerModule,BsDatepickerModule.forRoot()
-    
+    ReactiveFormsModule,DividerModule,BsDatepickerModule.forRoot(),PaginationModule.forRoot(),
+    ButtonsModule.forRoot(),TimeagoModule.forRoot()
     
 
   ],

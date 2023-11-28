@@ -26,7 +26,7 @@
         </ng-template>
        
             <img class="mr-3" *ngIf="(accountService.currentUser$| async)  as user" src="{{user.photoUrl || './assets/user.png'}}" alt="user photo">
-        <p-splitButton *ngIf="(accountService.currentUser$| async)  as user" label="Welcome {{user.username | titlecase}}" #menu
+        <p-splitButton *ngIf="(accountService.currentUser$| async)  as user" label="Welcome {{user.knownAs}}" #menu
             [model]="export"></p-splitButton>
 
         <form *ngIf="!(accountService.currentUser$ | async)" #loginForm="ngForm" (ngSubmit)="login()"

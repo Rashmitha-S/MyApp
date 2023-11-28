@@ -17,6 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddApplicationServices(builder.Configuration);
+builder.Services.AddIdentityServices(builder.Configuration);
 
 // builder.Services.AddDbContext<DataContext>(opt=>{
 //     opt.UseSqlite(builder.Configuration.GetConnectionString("defaultConnection"));
@@ -41,16 +42,16 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddScoped<ITokenService,TokenService>();
- builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
- .AddJwtBearer(Options=>{
-    Options.TokenValidationParameters=new TokenValidationParameters
-    {
-        ValidateIssuerSigningKey=true,
-        IssuerSigningKey=new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["TokenKey"])),
-        ValidateIssuer=false,
-        ValidateAudience=false
-    };
- });
+//  builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+//  .AddJwtBearer(options=>{
+//     options.TokenValidationParameters=new TokenValidationParameters
+//     {
+//         ValidateIssuerSigningKey=true,
+//         IssuerSigningKey=new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["TokenKey"])),
+//         ValidateIssuer=false,
+//         ValidateAudience=false
+//     };
+//  });
 
 var app = builder.Build();
 
@@ -75,7 +76,7 @@ app.UseHttpsRedirection();
  app.UseCors(MyAllowSpecificOrigins);
 //app.UseCors(builder=>builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
 
-app.UseAuthorization();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
